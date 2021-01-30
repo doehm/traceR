@@ -4,9 +4,9 @@ torch_data <- list(
   handle = handle,
   shadow = shadow
 )
-write_rds(torch_data, "C:/Users/Dan/Google Drive/R Code/my-packages/torch/torch-data.rds")
+write_rds(torch_data, "C:/Users/Dan/Google Drive/R Code/my-packages/traceR/dev/torch-data.rds")
 
-torch_data <- read_rds("C:/Users/Dan/Google Drive/R Code/my-packages/torch/torch-data.rds")
+torch_data <- read_rds("C:/Users/Dan/Google Drive/R Code/my-packages/traceR/dev/torch-data.rds")
 torch <- torch_data$torch
 handle <- torch_data$handle
 shadow <- torch_data$shadow
