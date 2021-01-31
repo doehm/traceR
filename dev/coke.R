@@ -21,6 +21,24 @@ plot(coke_bottle)
 
 font_import("C:/Users/Dan/Downloads/Fonts/loki_cola")
 
+# plastics data
+# Get the data
+tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
+
+plastics <- tuesdata$plastics
+
+plastics %>%
+  mutate_if(is.character, tolower) %>%
+  filter(
+    !parent_company %in% c("null", "unbranded", "grand total"),
+    !country %in% c("empty")
+  ) %>%
+  group_by(country) %>%
+  mutate(n_brands = n()) %>%
+  arrange(desc(n_brands)) %>%
+  group_b
+
+
 
 bottle <- record_coords("bottle")
 cap <- record_coords("cap")
@@ -48,20 +66,58 @@ coke %>%
   ) +
   geom_bspline_closed(data = filter(coke, name == "cap"), mapping = aes(x = x, y = y), colour = "black", fill = "red") +
   geom_polygon(data = filter(coke, name == "label"), mapping = aes(x = x, y = y), colour = "black", fill = "red") +
-  geom_text(x = 0.5, y = 0.54, label = "Yeah Nah", family = "Loki Cola", size = 18, colour = "white") +
+  geom_text(x = 0.5, y = 0.54, label = "America", family = "Loki Cola", size = 18, colour = "white") +
   theme_void()
 
-n <- 1e5
-shape <-
-alpha <- runif(n, 0, 0.2)
+n <- 2e4
+shape <- 100
+alpha <- runif(n, 0, 3)
 x <- runif(n)
 y <- alpha
-k <- beta(n, )
-bubble_colour <- c(rev(coke_ramp), coke_ramp)[]
+bubble_colour <- c(rev(coke_ramp), coke_ramp)
 
 bubbles <- tibble(
   alpha = alpha,
   x = x,
   y = y
 )
+
+ggplot() +
+  geom_point(data = bubbles, mapping = aes(x, y, colour = x), size = 5, alpha = 0.6) +
+  # geom_circle(
+  #   data = sample_n(bubbles, 100),
+  #   mapping = aes(x0 = x, y0 = y, r = sample(seq(0.03, 0.07, 0.001), 100, replace = TRUE), colour = runif(100))) + # sample(seq(0.05, 0.1, 0.001), 100, replace = TRUE)
+  geom_rect(aes(xmin = 0-wd/2, xmax = 1+wd/2, ymin = 0, ymax = 3.2), fill = "grey50", alpha = 0.2, colour = "black") +
+  geom_shape(
+    data = glass, aes(x = x, y = y), colour = "grey20", fill = "grey90",
+    expand = unit(0, 'mm'), radius = unit(3, 'mm')
+  ) +
+  scale_colour_gradientn(colours = bubble_colour) +
+  theme_void() +
+  theme(
+    legend.position = "none"
+  )
+
+wd <- 0.07
+base_wd <- 0.1
+glass <- tribble(
+  ~x, ~y,
+  0.1, 0.1+base_wd,
+  0, 0.2+base_wd,
+  0, 3.2,
+  -wd, 3.2,
+  -wd, -wd,
+  1+wd, -wd,
+  1+wd, 3.2,
+  1, 3.2,
+  1, 0.2+base_wd,
+  0.9, 0.1+base_wd
+)
+
+ggplot() +
+  geom_shape(
+    data = glass, aes(x = x, y = y), colour = "#8ecae6", fill = "#8ecae6", alpha = 0.05,
+    expand = unit(0, 'mm'), radius = unit(3.2, 'mm'), size = 1
+  ) +
+  theme_void()
 
