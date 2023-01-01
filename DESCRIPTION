@@ -1,11 +1,26 @@
 Package: traceR
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Click on an image to return the coordinates
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+  c(person(given = "Daniel",
+           family = "Oehm",
+           role = c("aut", "cre"),
+           email = "danieloehm@gmail.com"))
+Description: Clicking on an image in the plotting window records the coordinates
+    and returns them as a data frame. This allows the user to plot and control
+    the size of custom shapes.
+License: CC0
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 7.2.3
+Imports: 
+    grid,
+    stringr,
+    glue,
+    dplyr,
+    tibble,
+    ggplot2,
+    ggimage,
+    crayon,
+    ggforce
