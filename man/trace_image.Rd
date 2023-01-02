@@ -4,10 +4,12 @@
 \alias{trace_image}
 \title{Imports}
 \usage{
-trace_image(stop_window = 20)
+trace_image(stop_window = 20, scale = TRUE)
 }
 \arguments{
 \item{stop_window}{The number of pixels to create the kill switch.}
+
+\item{scale}{Logical. Scale coordinates to (0, 1)?}
 }
 \value{
 A tibble
@@ -15,7 +17,7 @@ A tibble
 \description{
 Click on the image to record the coordinates. When finished click on the
 right side of the window. A data frame is returned with the (x, y) coordinates
-scaled to (0, 1).
+scaled to (0, 1) by default.
 }
 \details{
 To use \code{trace_image}:
@@ -27,11 +29,22 @@ To use \code{trace_image}:
 and \code{stop_window} pixels on the x-axis}
 }
 
-The coordinates are scaled to (0, 1) and returned as a \code{tibble}
+The coordinates are scaled to (0, 1) by default and returned as a \code{tibble}. There is an
+option to return the raw pixel coordinates.
 }
 \examples{
 if(interactive()) {
+  library(ggimage)
+
+  # plot an image
+  img <- paste0(system.file(package = "traceR"), "/images/star.png")
+  ggplot() +
+    geom_image(aes(0, 0, image = img), size = 1)
+
+  # trace the image
   df <- trace_image()
+
+  # inspect the traced image
   inspect_trace(df)
 }
 }

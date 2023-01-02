@@ -2,9 +2,10 @@
 #'
 #' Click on the image to record the coordinates. When finished click on the
 #' right side of the window. A data frame is returned with the (x, y) coordinates
-#' scaled to (0, 1).
+#' scaled to (0, 1) by default.
 #'
 #' @param stop_window The number of pixels to create the kill switch.
+#' @param scale Logical. Scale coordinates to (0, 1)?
 #'
 #' @details To use \code{trace_image}:
 #' \enumerate{
@@ -15,18 +16,30 @@
 #' and \code{stop_window} pixels on the x-axis}
 #' }
 #'
-#' The coordinates are scaled to (0, 1) and returned as a \code{tibble}
+#' The coordinates are scaled to (0, 1) by default and returned as a \code{tibble}. There is an
+#' option to return the raw pixel coordinates.
 #'
 #' @return A tibble
 #' @export
 #'
 #' @examples
 #' if(interactive()) {
+#'   library(ggimage)
+#'
+#'   # plot an image
+#'   img <- paste0(system.file(package = "traceR"), "/images/star.png")
+#'   ggplot() +
+#'     geom_image(aes(0, 0, image = img), size = 1)
+#'
+#'   # trace the image
 #'   df <- trace_image()
+#'
+#'   # inspect the traced image
 #'   inspect_trace(df)
 #' }
 trace_image <- function(
-  stop_window = 20
+  stop_window = 20,
+  scale = TRUE
   ) {
 
   # initialise
@@ -52,8 +65,11 @@ trace_image <- function(
 
   cat(glue("\n\nTrace killed / {k-1} points recorded\n\n"))
   df <- df[-nrow(df),]
-  df$x <- scale_coords(df$x)
-  df$y <- scale_coords(df$y)
+
+  if(scale) {
+    df$x <- scale_coords(df$x)
+    df$y <- scale_coords(df$y)
+  }
 
   df
 }

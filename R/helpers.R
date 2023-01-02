@@ -1,4 +1,4 @@
-utils::globalVariables(c("x", "y"))
+utils::globalVariables(c("x", "y", "id"))
 
 #' Imports
 #' @name trace_image
@@ -7,10 +7,10 @@ utils::globalVariables(c("x", "y"))
 #' @importFrom glue glue
 #' @importFrom dplyr bind_rows
 #' @importFrom tibble tibble
-#' @importFrom ggplot2 ggplot aes theme_void geom_polygon
+#' @importFrom ggplot2 ggplot aes theme_void geom_polygon geom_point geom_text
 #' @importFrom ggimage geom_image
 #' @importFrom crayon underline
-#' @importFrom ggforce geom_bspline_closed
+#' @importFrom ggforce geom_bspline_closed0
 NULL
 
 #' Scale coords
@@ -55,10 +55,12 @@ scale_coords <- function(x) {
 #'   inspect_trace(df)
 #' }
 inspect_trace <- function(data) {
+  data$id <- 1:nrow(data)
   print(
     ggplot(data, aes(x, y)) +
-      geom_point() +
       geom_polygon(fill = NA, colour = "black") +
-      geom_bspline_closed0(fill = NA, colour = "blue")
+      geom_bspline_closed0(fill = NA, colour = "blue") +
+      geom_point(size = 6) +
+      geom_text(aes(label = id), colour = "white", size = 2)
   )
 }
