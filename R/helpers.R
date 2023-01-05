@@ -56,8 +56,11 @@ scale_coords <- function(x) {
 #' }
 inspect_trace <- function(data) {
   data$id <- 1:nrow(data)
+  if(!"layer" %in% colnames(data)) {
+    data$layer <- "null"
+  }
   print(
-    ggplot(data, aes(x, y)) +
+    ggplot(data, aes(x, y, group = layer)) +
       geom_polygon(fill = NA, colour = "black") +
       geom_bspline_closed0(fill = NA, colour = "blue") +
       geom_point(size = 6) +

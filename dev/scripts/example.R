@@ -16,6 +16,12 @@ ggplot() +
 
 df_torch <- record_coords("flame")
 
+df_flame <- read_rds("dev/data/torch-data.rds")$torch |>
+  mutate(
+    x = scale_coords(x)-0.5,
+    y = scale_coords(y)
+  )
+
 df_torch |>
   mutate(
     x = scale_coords(x),
@@ -78,28 +84,36 @@ df_bushfires <- tbls[[4]] |>
       p_burned > 0.015 ~ 4,
       p_burned > 0.01 ~ 3,
       p_burned > 0.005 ~ 2,
-      TRUE ~ 1
+      p_burned > 0 ~ 1,
+      TRUE ~ 0
     )
   ) |>
   drop_na()
 
+write_rds(df_bushfires, "dev/data/bushfires.rds")
+
 # flame -------------------------------------------------------------------
 
 library(geofacet)
+
+df_flame <- read_rds("dev/data/torch-data.rds")$torch |>
+  mutate(
+    x = scale_coords(x)-0.5,
+    y = scale_coords(y)
+  )
 
 pal <- c(Outer = '#f3705a', Inner = '#ffd15c')
 
 df_flame1 <- df_flame |>
   mutate(
     id = 1:n(),
-    x = x-0.5,
     layer = "Outer"
   ) |>
   bind_rows(
     df_flame |>
       mutate(
         id = 1:n(),
-        x = (x-0.5)*0.6,
+        x = x*0.6,
         y = y*0.6,
         layer = "Inner"
       )
