@@ -151,7 +151,9 @@ df_base |>
   theme_void() +
   theme(
     plot.margin = margin(t=60, b=60, l=60, r=60)
-    legend.position = "none"
+    legend.position = "none",
+    strip.background = element_rect(colour = "grey90"),
+    strip.text = element_text(margin = margin(t = 3, b = 3))
   )
 ```
 
@@ -159,7 +161,11 @@ df_base |>
 <img src='dev/images/us-bushfires.png' height='400' />
 </center>
 
-Done!
+It’s not perfect but it is a very convenient way to get the coords into
+a data frame for you to start working with. For this particular example
+there are a few other ways that are perhaps simpler since it’s just an
+outline of a flame. But if you have more complex image it can be a pain
+getting what you need.
 
 Once you start getting creative you can layer up traces and create
 images like this cute little dino that I’ve adopted for the hex!
