@@ -34,7 +34,7 @@ The coordinates are scaled to (0, 1) by default and returned as a `tibble`. Ther
 
 To demonstrate with a more detailed example, suppose you really liked the design of this flame and wanted to use it for some data viz.
 
-<img src='dev/images/simple-flame.jpg' height='300'/>
+<center><img src='dev/images/simple-flame.jpg' height='300'/></center>
 
 Firstly, plot the flame with `ggplot2`.
 
@@ -64,7 +64,7 @@ Inspect the coordinates with `inspect_trace()`. This plots the coordinates using
 inspect_trace(df_flame)
 ```
 
-<img src='dev/images/inspect-flame.png' height = '300' />
+<center><img src='dev/images/inspect-flame.png' height = '300' /></center>
 
 Now that you have what you need as a data frame you can plot it using standard `ggplot2` geoms. For example
 
@@ -93,7 +93,7 @@ df_flame1 |>
 
 ```
 
-<img src='dev/images/colour-flame.png' height = '300' />
+<center><img src='dev/images/colour-flame.png' height = '300' /></center>
 
 At this point you can get creative and do what you want with it. For example you could use the flame to create an infographic of bushfire damage in the US.
 
@@ -128,10 +128,10 @@ df_base |>
   )
 ```
 
-<img src='dev/images/us-bushfires.png' height='400' />
+<center><img src='dev/images/us-bushfires.png' height='400' /></center>
 
 Done!
 
 Once you start getting creative you can layer up traces and create images like this cute little dino that I've adopted for the hex!
 
-<img src='dev/images/ggdino.png' height='300' align='center'/>
+<center><img src='dev/images/ggdino.png' height='300' align='center'/></center>

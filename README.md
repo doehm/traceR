@@ -39,7 +39,9 @@ multiple layers or objects.
 To demonstrate with a more detailed example, suppose you really liked
 the design of this flame and wanted to use it for some data viz.
 
+<center>
 <img src='dev/images/simple-flame.jpg' height='300'/>
+</center>
 
 Firstly, plot the flame with `ggplot2`.
 
@@ -79,7 +81,9 @@ see if you got what you need.
 inspect_trace(df_flame)
 ```
 
+<center>
 <img src='dev/images/inspect-flame.png' height = '300' />
+</center>
 
 Now that you have what you need as a data frame you can plot it using
 standard `ggplot2` geoms. For example
@@ -108,7 +112,9 @@ df_flame1 |>
   scale_fill_manual(values = pal)
 ```
 
+<center>
 <img src='dev/images/colour-flame.png' height = '300' />
+</center>
 
 At this point you can get creative and do what you want with it. For
 example you could use the flame to create an infographic of bushfire
@@ -145,11 +151,15 @@ df_base |>
   )
 ```
 
+<center>
 <img src='dev/images/us-bushfires.png' height='400' />
+</center>
 
 Done!
 
 Once you start getting creative you can layer up traces and create
 images like this cute little dino that I’ve adopted for the hex!
 
+<center>
 <img src='dev/images/ggdino.png' height='300' align='center'/>
+</center>
