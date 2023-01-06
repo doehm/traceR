@@ -22,7 +22,7 @@ devtools::install_github("doehm/traceR")
 
 To use `trace_image`:
 
-1.  Plot an image or any `ggplot`
+1.  Plot an image in `ggplot`
 2.  Run `df <- trace_image()`
 3.  Click on the desired coordinates in the required sequence
 4.  When finished click on the left side of the plot window between 0
@@ -72,6 +72,10 @@ clicking in the same place twice.
 Click on the left side of the plotting window when you are done
 recording the coordinates (within 0-20 pixels by default). This will
 kill the recording and return the data frame.
+
+<center>
+<img src='dev/images/kill-flame.png' height='300'/>
+</center>
 
 Inspect the coordinates with `inspect_trace()`. This plots the
 coordinates using `geom_polygon()` and `geom_bspline_closed0` so you can
