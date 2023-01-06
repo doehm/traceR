@@ -1,4 +1,4 @@
-utils::globalVariables(c("x", "y", "id"))
+utils::globalVariables(c("x", "y", "id", "layer"))
 
 #' Imports
 #' @name trace_image
@@ -39,21 +39,19 @@ scale_coords <- function(x) {
 #' @return ggplot image
 #' @export
 #'
-#' @examples
-#' if(interactive()) {
-#'   library(ggimage)
+#' @examplesIf FALSE
+#' library(ggimage)
 #'
-#'   # plot an image
-#'   img <- paste0(system.file(package = "traceR"), "/images/star.png")
-#'   ggplot() +
-#'     geom_image(aes(0, 0, image = img), size = 1)
+#' # plot an image
+#' img <- paste0(system.file(package = "traceR"), "/images/star.png")
+#' ggplot() +
+#'   geom_image(aes(0, 0, image = img), size = 1)
 #'
-#'   # trace the image
-#'   df <- trace_image()
+#' # trace the image
+#' df <- trace_image()
 #'
-#'   # inspect the traced image
-#'   inspect_trace(df)
-#' }
+#' # inspect the traced image
+#' inspect_trace(df)
 inspect_trace <- function(data) {
   data$id <- 1:nrow(data)
   if(!"layer" %in% colnames(data)) {

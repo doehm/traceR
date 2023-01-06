@@ -17,18 +17,18 @@ ggplot image
 Takes as input the traced coordinates and plots them as a polygon.
 }
 \examples{
-if(interactive()) {
-  library(ggimage)
+\dontshow{if (FALSE) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+library(ggimage)
 
-  # plot an image
-  img <- paste0(system.file(package = "traceR"), "/images/star.png")
-  ggplot() +
-    geom_image(aes(0, 0, image = img), size = 1)
+# plot an image
+img <- paste0(system.file(package = "traceR"), "/images/star.png")
+ggplot() +
+  geom_image(aes(0, 0, image = img), size = 1)
 
-  # trace the image
-  df <- trace_image()
+# trace the image
+df <- trace_image()
 
-  # inspect the traced image
-  inspect_trace(df)
-}
+# inspect the traced image
+inspect_trace(df)
+\dontshow{\}) # examplesIf}
 }

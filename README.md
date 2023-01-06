@@ -49,8 +49,9 @@ Firstly, plot the flame with `ggplot2`.
 library(tidyverse)
 library(ggpath)
 
+flame_path <- "https://github.com/doehm/traceR/blob/main/dev/images/simple-flame.jpg?raw=true"
 ggplot() +
-  geom_from_path(aes(0, 0, path = "dev/images/simple-flame.jpg"))
+  geom_from_path(aes(0, 0, path = flame_path))
 ```
 
 Then run
@@ -128,7 +129,7 @@ damage in the US.
 library(geofacet)
 
 # scale the coords for each state based on the total area burned
-df_bushfires <- read_rds("dev/data/bushfires.rds")
+df_bushfires <- read_rds("https://github.com/doehm/traceR/blob/main/dev/data/bushfires.rds?raw=true")
 
 df_base <- map_dfr(df_bushfires$code, ~{
   dat <- df_bushfires |>
