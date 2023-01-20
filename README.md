@@ -104,7 +104,7 @@ df_flame1 <- df_flame |>
   bind_rows( # create and append the inner layer
     df_flame |> 
     mutate(
-      x = (x-0.5)*0.5, # scale the coords by 50%
+      x = (x-0.5)*0.5, # center and scale the coords by 50%
       y = y*0.5,       # scale the coords by 50%
       layer = "inner"
     )
@@ -159,14 +159,15 @@ df_base |>
 ```
 
 <center>
-<img src='dev/images/us-bushfires.png' height='400' />
+<img src='dev/images/us-bushfires.png' height='500' />
 </center>
 
 It’s not perfect but it is a very convenient way to get the coords into
-a data frame for you to start working with. For this particular example
-there are a few other ways that are perhaps simpler since it’s just an
-outline of a flame. But if you have more complex image it can be a pain
-getting what you need.
+a data frame for you to start working with.
+
+This flame is simple enough that you wouldn’t need to trace it to use it
+in this way. But if you have a more complex image with a bunch of stuff
+going on it comes in handy.
 
 Once you start getting creative you can layer up traces and create
 images like this cute little dino that I’ve adopted for the hex!
